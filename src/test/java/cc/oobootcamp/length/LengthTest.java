@@ -65,4 +65,34 @@ class LengthTest {
 
     assertThat(isSmaller).isFalse();
   }
+
+  @Test
+  void should_return_false_when_check_if_two_lengths_are_equals_given_4_and_2() {
+    Length largerLength = new Length(4);
+    Length smallerLength = new Length(2);
+
+    boolean isEqual = largerLength.isEqualTo(smallerLength);
+
+    assertThat(isEqual).isFalse();
+  }
+
+  @Test
+  void should_return_false_when_check_if_two_lengths_are_equals_given_2_and_4() {
+    Length smallerLength = new Length(2);
+    Length largerLength = new Length(4);
+
+    boolean isEqual = smallerLength.isEqualTo(largerLength);
+
+    assertThat(isEqual).isFalse();
+  }
+
+  @Test
+  void should_return_true_when_check_if_two_lengths_are_equals_given_3_and_3() {
+    Length firstLength = new Length(3);
+    Length secondLength = new Length(3);
+
+    boolean isEqual = firstLength.isEqualTo(secondLength);
+
+    assertThat(isEqual).isTrue();
+  }
 }

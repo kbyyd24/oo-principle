@@ -15,4 +15,8 @@ public class Length {
   public boolean isSmallerThan(Length target) {
     return this.value < target.value;
   }
+
+  public boolean isEqualTo(Length target) {
+    return this.value == target.value;
+  }
 }
