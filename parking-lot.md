@@ -29,20 +29,20 @@ Parking Lot
 
 **when** pick up the vehicle
 
-**then** return the vechile
+**then** return the vehicle
 
 ---
 
-**given** there is a ticket maps to a vehicle not in the parking lot
+**given** there is a ticket not maps to any vehicle in the parking lot
 
-**when** pick up the vechile
+**when** pick up the vehicle
 
-**then** do not return any vechile
+**then** do not return any vehicle
 
 ---
 
-**given** there are some vechiles in the parking lot and no ticket here
+**given** there are some vehicles in the parking lot and no ticket here
 
-**when** pick up any vechile
+**when** pick up any vehicle
 
-**then** do not return any vechile
+**then** do not return any vehicle
