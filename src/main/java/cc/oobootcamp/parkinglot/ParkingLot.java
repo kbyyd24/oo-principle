@@ -6,27 +6,31 @@ import java.util.Map;
 public class ParkingLot {
 
   private final int totalSpaces;
-  private final Map<Ticket, Vehicle> records;
+  private final Map<Ticket, Car> records;
 
   public ParkingLot(int totalSpaces) {
     this.totalSpaces = totalSpaces;
     records = new HashMap<>(totalSpaces, 1f);
   }
 
-  public Ticket parking(Vehicle vehicle) {
+  public Ticket park(Car car) {
     if (!hasAvailableSpace()) {
       return null;
     }
     Ticket ticket = new Ticket();
-    records.put(ticket, vehicle);
+    records.put(ticket, car);
     return ticket;
   }
 
-  private boolean hasAvailableSpace() {
+  public boolean hasAvailableSpace() {
     return records.size() < totalSpaces;
   }
 
-  public Vehicle pickUp(Ticket ticket) {
-    return records.get(ticket);
+  public Car pick(Ticket ticket) {
+    return records.remove(ticket);
+  }
+
+  public int getAvailableSpace() {
+    return totalSpaces - records.size();
   }
 }

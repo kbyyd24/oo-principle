@@ -18,39 +18,39 @@ class ParkingLotTest {
 
   @Test
   void should_return_ticket_when_parking_given_a_vehicle_and_has_available_parking_space() {
-    Vehicle vehicle = new Vehicle();
+    Car car = new Car();
 
-    Ticket ticket = parkingLot.parking(vehicle);
+    Ticket ticket = parkingLot.park(car);
 
     assertThat(ticket).isNotNull();
   }
 
   @Test
   void should_not_return_ticket_when_parking_given_a_vehicle_and_has_no_avaliable_parking_space() {
-    Vehicle vehicle = new Vehicle();
+    Car car = new Car();
     thereIsNoAvailableSpace(parkingLot);
 
-    Ticket ticket = parkingLot.parking(vehicle);
+    Ticket ticket = parkingLot.park(car);
 
     assertThat(ticket).isNull();
   }
 
   private void thereIsNoAvailableSpace(ParkingLot parkingLot) {
-    IntStream.range(0, TOTAL_SPACES).forEach(i -> parkingLot.parking(new Vehicle()));
+    IntStream.range(0, TOTAL_SPACES).forEach(i -> parkingLot.park(new Car()));
   }
 
   @Test
   void should_return_vehicle_when_pick_up_given_a_ticket_maps_to_vehicle_in_parking_lot() {
     Ticket ticket = oneTicketMapsVehicleInParkingLot(parkingLot);
 
-    Vehicle vehicleFound = parkingLot.pickUp(ticket);
+    Car carFound = parkingLot.pick(ticket);
 
-    assertThat(vehicleFound).isNotNull();
+    assertThat(carFound).isNotNull();
   }
 
   private Ticket oneTicketMapsVehicleInParkingLot(ParkingLot parkingLot) {
-    Vehicle parkedVehicle = new Vehicle();
-    return parkingLot.parking(parkedVehicle);
+    Car parkedCar = new Car();
+    return parkingLot.park(parkedCar);
   }
 
   @Test
@@ -58,23 +58,23 @@ class ParkingLotTest {
     parkedSomeVehicles(parkingLot);
     Ticket ticket = new Ticket();
 
-    Vehicle vehicle = parkingLot.pickUp(ticket);
+    Car car = parkingLot.pick(ticket);
 
-    assertThat(vehicle).isNull();
+    assertThat(car).isNull();
   }
 
   @Test
   void should_not_return_vehicle_when_pick_up_given_no_ticket() {
     parkedSomeVehicles(parkingLot);
 
-    Vehicle vehicle = parkingLot.pickUp(null);
+    Car car = parkingLot.pick(null);
 
-    assertThat(vehicle).isNull();
+    assertThat(car).isNull();
   }
 
   private void parkedSomeVehicles(ParkingLot parkingLot) {
-    parkingLot.parking(new Vehicle());
-    parkingLot.parking(new Vehicle());
-    parkingLot.parking(new Vehicle());
+    parkingLot.park(new Car());
+    parkingLot.park(new Car());
+    parkingLot.park(new Car());
   }
 }
